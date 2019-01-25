@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Huawei</title>
+
+    <!-- Bootstrap core CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"
+          type="text/css" th:href="@{/webjars/font-awesome/5.6.3/css/all.min.css}">
+
+    <!-- Page level plugin CSS-->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet"
+          th:href="@{/webjars/datatables/1.10.19/css/dataTables.bootstrap4.css}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.0/dropzone.css"
+          th:href="@{/webjars/dropzone/5.5.0/dropzone.css}"/>
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+
+</head>
+
+<body id="page-top">
+
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+    <a class="navbar-brand mr-1" href="#" th:href="@{'/'}">Huawei</a>
+
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+    </button>
+
+</nav>
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{'/'}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{'/'}">
+                <i class="fas fa-fw fa-upload"></i>
+                <span>Upload CSV</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{'/analysis'}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Information Analysis</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{'/view-uploads'}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>View Uploads</span></a>
+        </li>
+    </ul>
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid mb-4">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="index.html">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Upload CSV | View records</li>
+            </ol>
+
+            <!-- Page Content -->
+            <h1>Upload CSV file</h1>
+            <hr>
+
+
+            <div class="row">
+                <div class="col-md-8 order-md-1 ml-0">
+                    <form action="/file-upload" class="dropzone dz-clickable" id="my-awesome-dropzone"
+                          th:action="@{/file-upload}" method="post">
+                        <div class="dz-message d-flex flex-column text-center">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            Drag &amp; Drop here or click
+                        </div>
+                    </form>
+                    <hr>
+                    <a class="btn btn-info pull-right" href="#" th:href="@{'/view-uploads'}"> <span
+                            class="glyphicon glyphicon-eye-open"></span> View All Uploads
+                    </a>
+                </div>
+
+                <div class="col-md-4 order-md-2 mb-4" id="csv-files">
+                    <h5 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Processing Files in Batch for Analysis</span>
+                    </h5>
+                    <ul class="list-group mb-3" >
+
+                        <!--<li class="list-group-item d-flex justify-content-between lh-condensed">-->
+                            <!--<div>-->
+                                <!--<h6 class="my-0">Product name</h6>-->
+                                <!--<small class="text-muted">22kB</small>-->
+                            <!--</div>-->
+                            <!--<span class="text-muted">20/01/2019 10:45PM</span>-->
+                        <!--</li>-->
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total Files Uploaded</span>
+                            <strong id="totalUploaded">0</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright © Huawei 2018</span>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous" th:href="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous" th:href="@{/webjars/popper.js/1.14.6/dist/popper.min.js}"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous" th:href="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.0/dropzone.js"
+        th:href="@{/webjars/dropzone/5.5.0/dropzone.js}">
+</script>
+
+<!-- Core plugin JavaScript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"
+        th:href="@{/webjars/jquery-easing/1.3/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="../js/sb-admin.js"></script>
+
+<script>
+    a = 0;
+    Dropzone.options.myAwesomeDropzone = {
+        acceptedFiles: ".csv,.xlsx,.xls",
+        maxFilesize: 7, // MB
+        uploadMultiple: false,
+        // maxFiles: 1,
+        success: function(file, response){
+            //alert(response);
+            console.log(response);
+            console.log(response[0].filename);
+            a++;
+            $("#csv-files ul").prepend(
+                '<li class="list-group-item d-flex justify-content-between lh-condensed"><div><h6 class="my-0">'+response[0].filename+'</h6><small class="text-muted">'+Math.ceil(parseFloat(response[0].size)/1024)+'KB</small></div> <span class="text-muted" id="process-status'+a +'">Processing file</span> </li>'
+            );
+            $("#totalUploaded").text(a);
+            $.ajax({
+                method: "POST",
+                url: "/process-csv",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify(response),
+                cache: false,
+                success: function(res){
+                    console.log(res);
+                    $('#process-status'+a).html(res)
+                }
+            });
+
+        }
+    };
+</script>
+
+</body>
+
+</html>
